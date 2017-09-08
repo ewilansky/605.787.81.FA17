@@ -1,10 +1,10 @@
-
 /* Base styles */
 * {
   /* applies to all elements. Browser override */
   box-sizing: border-box; /* property not inherited */
-  /* margin: 0px;
-  padding: 0px;*/
+  margin-top: 10px;
+  padding: 0px;
+  margin-right: auto;
 }
 
 body {
@@ -20,20 +20,18 @@ h1 {
 /* styled content inside of each box */
 div.container {
   background-color: #898383;
-  width: 90%;
   height: 150px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 10px;
   margin-top: 10px;
   padding: 7px;
   font-size: 11px;
   color: #100505;
   position: relative;
+  border: 1px solid black;
 }
 
 h2.title {
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 12px;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -42,19 +40,21 @@ h2.title {
   height: 25px;
   text-align: center;
   padding-top: 5px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
 }
 
-#chicken {
+#intro {
   background-color: #CD8894;
 }
 
-#beef {
-  background-color: #76202F;
+#detective {
+  background-color: #AA1B33;
   color: #ffffff;
+  width: 130px;
 }
 
-#sushi {
+#theman {
   background-color: #C3C341;
 }
 
@@ -67,6 +67,8 @@ p.detail {
 /* Simple Responsive Framework. */
 .row {
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /********** Large devices only **********/
@@ -152,7 +154,5 @@ p.detail {
   }
   .col-md-12 {
     width: 100%;
-    margin-left: 0px;
-    margin-right: 0px
   }
 }
