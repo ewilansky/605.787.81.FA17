@@ -120,10 +120,6 @@ p.detail:hover {
   .col-lg-12 {
     width: 100%;
   }
-
-  h1#mobile, h2.mobile-title, #intro-mobile, #detective-mobile, #theman-mobile {
-    display: none;
-  }
 }
 
 /********** Tablet devices only **********/
@@ -167,18 +163,14 @@ p.detail:hover {
   .col-md-12 {
     width: 100%;
   }
+}
 
+/** content that must not appear in tablet or larger devices **/
+@media (min-width:768px) {
   h1#mobile, h2.mobile-title, #intro-mobile, #detective-mobile, #theman-mobile {
     display: none;
   }
 }
-
-/** content that must not appear in tablet or larger devices **/
-/* @media (min-width:768px) {
-  #mobile, h2.mobile-title, #intro-mobile, #detective-mobile, #theman-mobile {
-    display: none;
-  }
-} */
 
 /** mobile devices **/
 @media (max-width: 767px) {
