@@ -216,8 +216,4 @@ p.detail:hover {
   h2.title, #intro, #detective, #theman {
     display: none;
   }
-
-  p.detail {
-    -webkit-overflow-scrolling: touch;
-  }
 }
