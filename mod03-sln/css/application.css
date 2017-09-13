@@ -1,0 +1,147 @@
+body {
+  font-size: 16px;
+  color: #010101;
+  background-color: #ffffff;
+  font-family: 'Oxygen', sans-serif;
+}
+
+#header-nav {
+  background-color: #585454;
+  border-radius: 0;
+  border: 2px #000000 solid;
+  margin-bottom: 0px;
+}
+
+#logo-txt {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+#stretch-to-edge {
+   padding-right: 0px;
+   padding-left: 0px; 
+}
+
+.navbar button.navbar-toggle {
+  border: 1px solid #000000;
+}
+
+.navbar .icon-bar {
+  border: 2px solid #000000;
+}
+
+#collapsable-nav {
+  clear: both;
+  box-shadow: none;
+  background-color: #ffffff;
+}
+
+li.visible-xs-block {
+  color: #000000;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  text-align: center;
+}
+
+li.selective-border {
+  border-bottom: 2px solid #000000;
+}
+
+#nav-list a {
+  color: #000000;
+  font-weight: bold;
+}
+
+a#intro {
+  padding-top: 0px;
+}
+
+a#theman {
+  padding-bottom: 0px;
+}
+/* END NAV REGION */
+
+/* CONTENT REGION */
+
+div.page-header {
+  margin-top: 0px;
+  text-align: center;
+}
+
+div.page-header > h1 {
+  font-weight: bold;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+/** Desktop only **/
+@media (min-width: 992px) {
+  div.page-header > h1 {
+    font-size: 14px;
+  }
+}
+
+/** Tablet only **/
+@media (min-width: 768px) and (max-width: 991px) {
+  div.page-header > h1 {
+    font-size: 18px;
+  }
+}
+
+/** Mobile only **/
+@media (max-width: 767px) {
+  div.page-header > h1 {
+    font-size: 18px;
+  }
+}
+
+#main-content {
+
+}
+
+#item-tiles {
+
+}
+
+h2#intro, h2#beef, h2#sushi {
+  
+}
+
+h2#chicken {
+  
+}
+
+h2#beef {
+  
+}
+
+h2#sushi {
+  
+}
+
+h2.title {
+  font-size: 14px;
+  text-align: center;
+}
+
+div.tile {
+  background-color: #585454;
+  height: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  color: #100505;
+  border: 1px solid black;
+}
+
+p.detail {
+  margin-left: 0px;
+  margin-top: 30px;
+  text-align: left;
+  overflow: hidden;
+  height: 85px;
+}
+
+/* END CONTENT REGION */
