@@ -4,24 +4,74 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <title>Boostrap Starter Page</title>
+    <title>Assignment 3 - Twitter Bootstrap</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/application.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
   </head>
 <body>
+  <header>
+     <div id="stretch-to-edge" class="container-fluid">
+        <nav id="header-nav" class="navbar navbar-default navbar-static-top">
+            
+          <a id="stetch-to-edge" class="navbar-brand" href="#">
+            <h1 id="logo-txt">Sherlock Holmes</h1>
+          </a>
 
-  <h1>Hello Coursera!</h1>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div id="collapsable-nav" class="collapse navbar-collapse">
+              <ul id="nav-list" class="nav navbar-nav navbar-right">
+               <li class="visible-xs-block selective-border">
+                 <a id="intro" href="#intro">Intro</a>
+               </li>
+               <li class="visible-xs-block selective-border">
+                 <a id="detective-machine" href="#detectivemachine">Detective Machine</a>
+               </li>
+               <li class="visible-xs-block">
+                 <a id="theman" href="#theman">The Man</a>
+               </li>
+             </ul><!-- #nav-list -->
+           </div><!-- .collapse .navbar-collapse -->
+        </nav> 
+      </div><!-- .container-fluid -->
+  </header>
+
+  <div id="main-content" class="container-fluid"> 
+      <div class="page-header">
+          <h1>Our Menu</h1>
+      </div>
+      <div id="item-tiles" class="row">
+        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div id="intro-tile" class="tile">  
+            <h2 class="title" id="intro">Intro</h2>
+            <p class="detail">To Sherlock Holmes she is always THE woman. I have seldom heard him mention her under any other name. In his eyes she eclipses and predominates the whole of her sex. It was not that he felt any emotion akin to love for Irene Adler. All emotions, and that one particularly, were abhorrent to his cold, precise but admirably balanced mind. He was, I take it, the most perfect reasoning and observing machine that the world has seen, but as a lover he would have placed himself in a false position. He never spoke of the softer passions, save with a gibe and a sneer. They were admirable things for the observer--excellent for drawing the veil from men's motives and actions. But for the trained teasoner to admit such intrusions into his own delicate and finely adjusted temperament was to introduce a distracting factor which might throw a doubt upon all his mental results. Grit in a sensitive instrument, or a crack in one of his own high-power lenses, would not be more disturbing than a strong emotion in a nature such as his. And yet there was but one woman to him, and that woman was the late Irene Adler, of dubious and questionable memory.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div id="beef-tile" class="tile">  
+            <h2 class="title" id="beef">Beef</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+          <div id="sushi-tile" class="tile">
+            <h2 class="title" id="sushi">Sushi</h2>
+          </div>
+        </div>
+        
+      </div>
+  </div>
 
   <!-- jQuery (Bootstrap JS plugins depend on it) -->
-  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
 </body>
