@@ -6,13 +6,13 @@ body {
 }
 
 #header-nav {
-  background-color: #585454;
+  background-color: #807C7C;
   border-radius: 0;
   border: 2px #000000 solid;
   margin-bottom: 0px;
 }
 
-#logo-txt {
+#nav-header-txt {
   color: #000000;
   font-size: 18px;
   font-weight: bold;
@@ -54,11 +54,11 @@ li.selective-border {
   font-weight: bold;
 }
 
-a#intro {
+a#intro-link {
   padding-top: 0px;
 }
 
-a#theman {
+a#theman-lik {
   padding-bottom: 0px;
 }
 /* END NAV REGION */
@@ -79,6 +79,10 @@ div.page-header > h1 {
 /** Desktop only **/
 @media (min-width: 992px) {
   div.page-header > h1 {
+    font-size: 1em;
+  }
+
+  div.panel-default > h3.page-header {
     font-size: 14px;
   }
 }
@@ -86,62 +90,60 @@ div.page-header > h1 {
 /** Tablet only **/
 @media (min-width: 768px) and (max-width: 991px) {
   div.page-header > h1 {
+    font-size: 1.2em;
+  }
+
+  div.panel-default > h3.page-header {
     font-size: 18px;
   }
+  
 }
 
 /** Mobile only **/
 @media (max-width: 767px) {
   div.page-header > h1 {
-    font-size: 18px;
+    font-size: 1.2em;
   }
 }
 
-#main-content {
-
+div.panel-default > h3.page-header {
+  font-weight: bold;
 }
 
-#item-tiles {
-
-}
-
-h2#intro, h2#beef, h2#sushi {
-  
-}
-
-h2#chicken {
-  
-}
-
-h2#beef {
-  
-}
-
-h2#sushi {
-  
-}
-
-h2.title {
-  font-size: 14px;
+div.panel-default > h3.page-header,
+div.panel-default > div.panel-footer {
   text-align: center;
+  border: 0px;
 }
 
-div.tile {
-  background-color: #585454;
-  height: 150px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  font-size: 11px;
-  color: #100505;
-  border: 1px solid black;
+a.panel-footer {
+  display: block;
 }
 
-p.detail {
-  margin-left: 0px;
-  margin-top: 30px;
-  text-align: left;
-  overflow: hidden;
-  height: 85px;
+div.panel-default > h3.page-header, 
+div.panel-default > div.panel-body, 
+div.panel-default > div.panel-footer {
+  color: #000000;
+  background-color: #807C7C;
+}
+
+div.panel-default > div.panel-body {
+  font-size: .8em;
+  height: 580px;
+}
+
+h3.page-header {
+  margin: 0px;
+  padding-top: 10px;
+}
+
+a.link-footer:link {
+  color: #0000EE;
+  text-decoration: underline;
+}
+
+a.link-footer:visited {
+  color: #551A8B;
 }
 
 /* END CONTENT REGION */
