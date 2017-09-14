@@ -149,18 +149,18 @@ a.link-footer:visited {
   }
 
   /* change navbar appearance when it has focus (has been clicked) */
-  .navbar-default .navbar-toggle:focus {
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background: none;
     border-color: #ffffff;
   }
 
   /* change icon bars to white when navbar has focus (has been clicked) */
-  .navbar-toggle:focus > span.icon-bar {
+  .navbar-toggle:focus > span.icon-bar, .navbar-toggle:hover > span.icon-bar {
     border-color: #ffffff;
   }
 
   /* change icon bars back to black when navbar collapsed */
-  .navbar-default .navbar-toggle.collapsed .icon-bar {
+  .navbar-default .navbar-toggle.collapsed span.icon-bar {
     border-color: #000000;
   }
 
