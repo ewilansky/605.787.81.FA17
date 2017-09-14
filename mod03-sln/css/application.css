@@ -76,36 +76,6 @@ div.page-header > h1 {
   margin-bottom: 0px;
 }
 
-/** Desktop only **/
-@media (min-width: 992px) {
-  div.page-header > h1 {
-    font-size: 1em;
-  }
-
-  div.panel-default > h3.page-header {
-    font-size: 14px;
-  }
-}
-
-/** Tablet only **/
-@media (min-width: 768px) and (max-width: 991px) {
-  div.page-header > h1 {
-    font-size: 1.2em;
-  }
-
-  div.panel-default > h3.page-header {
-    font-size: 18px;
-  }
-  
-}
-
-/** Mobile only **/
-@media (max-width: 767px) {
-  div.page-header > h1 {
-    font-size: 1.2em;
-  }
-}
-
 div.panel-default > h3.page-header {
   font-weight: bold;
 }
@@ -144,6 +114,51 @@ a.link-footer:link {
 
 a.link-footer:visited {
   color: #551A8B;
+}
+
+/**** Media Based Selectors ****/
+
+/** Desktop only **/
+@media (min-width: 992px) {
+  div.page-header > h1 {
+    font-size: 1em;
+  }
+
+  div.panel-default > h3.page-header {
+    font-size: 14px;
+  }
+}
+
+/** Tablet only **/
+@media (min-width: 768px) and (max-width: 991px) {
+  div.page-header > h1 {
+    font-size: 1.2em;
+  }
+
+  div.panel-default > h3.page-header {
+    font-size: 18px;
+  }
+  
+}
+
+/** Mobile only **/
+@media (max-width: 767px) {
+  div.page-header > h1 {
+    font-size: 4vw;
+  }
+
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background: none;
+  }
+
+  .navbar-toggle:focus > span.icon-bar {
+    border-color: #ffffff;
+  }
+
+  .navbar-default .navbar-toggle.collapsed .icon-bar {
+    border-color: #000000;
+  }
+    
 }
 
 /* END CONTENT REGION */
