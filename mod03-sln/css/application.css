@@ -36,7 +36,6 @@ body {
 #collapsable-nav {
   clear: both;
   box-shadow: none;
-  background-color: #ffffff;
 }
 
 li.visible-xs-block {
@@ -165,7 +164,7 @@ a.link-footer:visited {
   }
 
   /* change navbar border back to black when collapsed */
-  .navbar-default .navbar-toggle.collapsed {
+  .navbar-default .navbar-toggle.collapsed  {
     border-color: #000000;
   }
 
@@ -176,6 +175,10 @@ a.link-footer:visited {
   .navbar-default .navbar-collapse {
     border: none;
   }
+
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background: none;
+}
   
 }
 
