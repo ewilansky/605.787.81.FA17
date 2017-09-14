@@ -168,6 +168,14 @@ a.link-footer:visited {
   .navbar-default .navbar-toggle.collapsed {
     border-color: #000000;
   }
+
+  #collapsable-nav {
+    background-color: #3336d6
+  }
+
+  .navbar-default .navbar-collapse {
+    border: none;
+  }
   
 }
 
