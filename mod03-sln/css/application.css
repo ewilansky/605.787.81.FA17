@@ -5,6 +5,7 @@ body {
   font-family: 'Oxygen', sans-serif;
 }
 
+/* NAV REGION */
 #header-nav {
   background-color: #807C7C;
   border-radius: 0;
@@ -116,7 +117,7 @@ a.link-footer:visited {
   color: #551A8B;
 }
 
-/**** Media Based Selectors ****/
+/* MEDIA BASED SELECTORS */
 
 /** Desktop only **/
 @media (min-width: 992px) {
@@ -147,18 +148,28 @@ a.link-footer:visited {
     font-size: 4vw;
   }
 
-  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  /* change navbar appearance when it has focus (has been clicked) */
+  .navbar-default .navbar-toggle:focus {
     background: none;
+    border-color: #ffffff;
   }
 
+  /* change icon bars to white when navbar has focus (has been clicked) */
   .navbar-toggle:focus > span.icon-bar {
     border-color: #ffffff;
   }
 
+  /* change icon bars back to black when navbar collapsed */
   .navbar-default .navbar-toggle.collapsed .icon-bar {
     border-color: #000000;
   }
-    
+
+  /* change navbar border back to black when collapsed */
+  .navbar-default .navbar-toggle.collapsed {
+    border-color: #000000;
+  }
+  
 }
 
+/* END MEDIA BASED SELECTORS */
 /* END CONTENT REGION */
