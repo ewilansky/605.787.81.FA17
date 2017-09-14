@@ -26,11 +26,11 @@ body {
 }
 
 .navbar button.navbar-toggle {
-  border: 1px solid #000000;
+  border: 1px solid #ffffff;
 }
 
 .navbar .icon-bar {
-  border: 2px solid #000000;
+  border: 2px solid #ffffff;
 }
 
 #collapsable-nav {
@@ -149,7 +149,7 @@ a.link-footer:visited {
   }
 
   /* change navbar appearance when it has focus (has been clicked) */
-  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover {
     background: none;
     border-color: #ffffff;
   }
