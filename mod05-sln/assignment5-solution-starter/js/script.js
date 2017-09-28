@@ -14,6 +14,8 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 var dc = {};
 
 var homeHtmlUrl = "snippets/home-snippet.html";
+var aboutHtmlUrl = "snippets/about-snippet.html";
+
 var allCategoriesUrl =
   "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
@@ -104,15 +106,40 @@ function buildAndShowHomeHTML (categories) {
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.      
       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
-      console.log('chosenCat:' + chosenCategoryShortName );
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
       insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
-
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
 
+// Builds HTML for the about page and includes a random rating.
+function buildAndShowAboutHTML (aboutHtml) {
+  // Load about snippet page
+  $ajaxUtils.sendGetRequest(
+    aboutHtmlUrl,
+    function (aboutHtml) {
+      var generatedRating = getRandomInt(1, 5);
+      var htmlRating = generateHtmlRating(generatedRating);
+      var aboutHtmlToInsertIntoMainPage = insertProperty(aboutHtml, "randomRating", "'" + generatedRating + "'");
+      insertHtml("#main-content", aboutHtmlToInsertIntoMainPage);
+    },
+    false);
+}
+
+// function for getting a random integer between two values from mozilla.org
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+function generateHtmlRating(randomRating) {
+  for(i = 1; i < randomRating; i++) {
+    
+  }
+}
 
 // Given array of category objects, returns a random category object.
 function chooseRandomCategory (categories) {
@@ -140,6 +167,14 @@ dc.loadMenuItems = function (categoryShort) {
   $ajaxUtils.sendGetRequest(
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
+};
+
+// Load the about view
+dc.loadAboutContent = function() {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    aboutHtmlUrl,
+    buildAndShowAboutHTML, false);
 };
 
 
