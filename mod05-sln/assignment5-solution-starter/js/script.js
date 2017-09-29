@@ -119,10 +119,11 @@ function buildAndShowAboutHTML (aboutHtml) {
   $ajaxUtils.sendGetRequest(
     aboutHtmlUrl,
     function (aboutHtml) {
-      var generatedRating = getRandomInt(1, 5);
-      var htmlRating = generateHtmlRating(generatedRating);
-      var aboutHtmlToInsertIntoMainPage = insertProperty(aboutHtml, "randomRating", "'" + generatedRating + "'");
-      insertHtml("#main-content", aboutHtmlToInsertIntoMainPage);
+      var generatedRating = getRandomInt(1, 6);
+      var htmlRating = generateHtmlRating(generatedRating, aboutHtml);
+
+      // var aboutHtmlToInsertIntoMainPage = insertProperty(aboutHtml, "randomRating", "'" + generatedRating + "'");
+      insertHtml("#main-content", htmlRating);
     },
     false);
 }
@@ -135,10 +136,39 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-function generateHtmlRating(randomRating) {
-  for(i = 1; i < randomRating; i++) {
-    
+function generateHtmlRating(randomRating, htmlString) {
+  var filledStars = "";
+  var emptyStars = "";
+  var ratingNumber = "";
+  var finalHtml = "";
+
+  switch(randomRating) {
+    case 1:
+      filledStars = htmlString.slice(0, 30);
+      emptyStars = htmlString.slice(30, 150);
+      break;
+    case 2:
+      filledStars = htmlString.slice(0, 60);
+      emptyStars = htmlString.slice(60, 150);
+      break;
+    case 3:
+      filledStars = htmlString.slice(0, 90);
+      emptyStars = htmlString.slice(90, 150);
+      break;
+    case 4:
+      filledStars = htmlString.slice(0, 120);
+      emptyStars = htmlString.slice(120, 150);
+      break;
+    default:
+      filledStars = htmlString.slice(0, 150);
   }
+  ratingNumber = htmlString.slice(150, 208);
+
+  finalHtml = insertProperty(filledStars, 'star', 'fa fa-star');
+  finalHtml += insertProperty(emptyStars, 'star', 'fa fa-star-o');
+  finalHtml += insertProperty(ratingNumber, 'randomRating', randomRating);
+
+  return finalHtml;
 }
 
 // Given array of category objects, returns a random category object.

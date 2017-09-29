@@ -229,6 +229,12 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* ABOUT PAGE */
+#rating-item {
+  padding-left: 10px;
+}
+
+/* END ABOUT PAGE */
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
