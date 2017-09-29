@@ -141,34 +141,34 @@ function generateHtmlRating(randomRating, htmlString) {
   var emptyStars = "";
   var ratingNumber = "";
   var finalHtml = "";
+  var optimizedString = htmlStringMinimizer(htmlString);
 
-  switch(randomRating) {
-    case 1:
-      filledStars = htmlString.slice(0, 30);
-      emptyStars = htmlString.slice(30, 150);
-      break;
-    case 2:
-      filledStars = htmlString.slice(0, 60);
-      emptyStars = htmlString.slice(60, 150);
-      break;
-    case 3:
-      filledStars = htmlString.slice(0, 90);
-      emptyStars = htmlString.slice(90, 150);
-      break;
-    case 4:
-      filledStars = htmlString.slice(0, 120);
-      emptyStars = htmlString.slice(120, 150);
-      break;
-    default:
-      filledStars = htmlString.slice(0, 150);
+  filledStars = optimizedString.slice(0, 30 * randomRating);
+  if (ratingNumber < 5) {
+    emptyStars = optimizedString.slice(30 * randomRating, 150);
   }
-  ratingNumber = htmlString.slice(150, 208);
+ 
+  ratingNumber = optimizedString.slice(150, 206);
 
   finalHtml = insertProperty(filledStars, 'star', 'fa fa-star');
   finalHtml += insertProperty(emptyStars, 'star', 'fa fa-star-o');
   finalHtml += insertProperty(ratingNumber, 'randomRating', randomRating);
 
   return finalHtml;
+}
+
+// removes all white space and carriage returns from an HTML string
+function htmlStringMinimizer (htmlStr) {
+    // remove line returns
+    htmlStr = htmlStr.replace(/(\r\n|\n|\r)/gm,"");
+    // remove white space and tabs before tags
+    htmlStr = htmlStr.replace(/[\t ]+\</g, "<");
+    // remove whitespace between tags
+    htmlStr = htmlStr.replace(/\>[\t ]+\</g, "><");
+    // remove whitespace after tags
+    htmlStr = htmlStr.replace(/\>[\t ]+$/g, ">");
+
+    return htmlStr;
 }
 
 // Given array of category objects, returns a random category object.
