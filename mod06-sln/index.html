@@ -7,25 +7,20 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>What's For Lunch?</title>
   </head>
-  <body ng-app="NameCalculator">
+  <body ng-app="LunchCheck">
     <h2>What do you usually eat for lunch?</h2>
-    <div ng-controller="NameCalculatorController">
-      <div>
-        Enter a comma separated list of foods you eat for lunch:<br/>
-        <input type="text" id="entryBox"
-          ng-model="foodList">
-      </div>
-      <div>
-        <button type="button"
+    <div ng-controller="LunchCheckController">
+      <div>Enter a comma separated list of foods you eat for lunch</div>
+        <div id = "wrapper">
+          <input type="text" id="entryBox" ng-model="foodList">
+          <div id="note">{{noteMsg}}</div>
+        </div>
+      <div id = "wrapper">
+        <button type="button" class="button"
           ng-click="displayMessage()">Check if too much
         </button>
+        <div ng-class="customStyle.colorClass">{{foodMsg}}</div>
       </div>
-      <div>
-        Note, an empty item, (i.e., , ,) is not considered a lunch item to count.
-
-        still need to deal with a leading comma counting as an item...
-      </div>
-      <div>{{foodMsg}}</div>
     </div>
   </body>
 </html>

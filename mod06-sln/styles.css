@@ -1,8 +1,61 @@
+/* Base styles */
+* {
+    /* applies to all elements. Browser override */
+    box-sizing: border-box; /* property not inherited */
+    margin-top: 10px;
+    padding: 0px;
+    margin-right: auto;
+  }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    width: 750px;
+    overflow: hidden;
+}
+
 #entryBox {
-    /* height:100px;*/
-    width:400px;
+    width:350px;
+    float: left;
+    margin-right: 10px;
+}
+
+#note {
+    margin-top: 8px;
+    font-size: 12pt;
 }
 
 body { 
     font-size: 1.3em;
+}
+
+.box {
+    display: inline-block;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 12pt;
+    margin-top: 15px;
+}
+
+.green {
+    color: #008000;
+    border: 1px solid #008000;
+}
+
+.red {
+    color: #FF0000;
+    border: 1px solid #FF0000;
+}
+
+.button {
+    background-color: #008000;
+    color: white;
+    padding: 3px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    float: left;
+    margin-right: 10px
 }
