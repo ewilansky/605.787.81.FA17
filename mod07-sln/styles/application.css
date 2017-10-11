@@ -16,3 +16,13 @@
   button > span {
     color: green;
   }
+
+  #qty {
+      width:45px;
+      margin-right:10px;
+      text-align: right;
+  }
+
+  .shopping-list {
+    margin-bottom: 5px;
+  }

@@ -10,6 +10,7 @@ ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
   var buy = this;
   buy.items = ShoppingListCheckOffService.getItems('toBuy');
+  buy.quantity = 1;
 
   buy.moveItem = function(itemIndex) {
     ShoppingListCheckOffService.moveItem(itemIndex)
@@ -27,28 +28,35 @@ function ShoppingListCheckOffService() {
 
   var toBuyList = [
     {
-      name: "Ginger Roots",
-      quantity: "2"
+      name: "Ginger Root per Lb",
+      quantity: 1,
+      pricePerItem: 7.25,
+      totalPrice: 7.25
     },
     {
       name: "Avocados",
-      quantity: "4"
+      quantity: 1,
+      pricePerItem: 1.49
     },
     {
       name: "Garlic Cloves",
-      quantity: "2"
+      quantity: 1, 
+      pricePerItem: 1.99
     },
     {
       name: "Chocolate Bars",
-      quantity: "5"
+      quantity: 1,
+      pricePerItem: 4.50
     },
     {
       name: "Papayas",
-      quantity: "2"
+      quantity: 1,
+      pricePerItem: 4.25
     },
     {
       name: "Mangos",
-      quantity: "4"
+      quantity: 1,
+      pricePerItems: 2.25
     }
   ];
   
