@@ -20,26 +20,23 @@
      <ul>
         <li ng-repeat="item in buy.items">
           {{ item.quantity }} of {{ item.name }}
-          <button class="btn btn-default" ng-click="buy.removeItem($index);">
+          <button class="btn btn-default" ng-click="buy.moveItem($index);">
             <span class="glyphicon glyphicon-ok"></span> Bought
           </button>
         </li>
       </ul>
-       <!-- <li>Buy 10 cookies 
-         <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button>
-        </li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-     </ul> -->
-     <div class="emptyMessage">Everything is bought!</div>
+     <div ng-if="buy.items.length == 0" class="emptyMessage">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
     <div class="col-md-6" ng-controller='AlreadyBoughtController as bought'>
      <h2>Already Bought:</h2>
      <ul>
-       <li>Bought 10 cookies</li>
-     </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
+        <li ng-repeat="thing in bought.things">
+          {{ thing.quantity }} of {{ thing.name }}
+        </li>
+      </ul>
+     <div ng-if="bought.things.length ==0" class="emptyMessage">Nothing bought yet.</div>
     </div>
   </div>
 </div>
