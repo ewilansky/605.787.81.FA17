@@ -10,7 +10,7 @@ angular.module('ShoppingListCheckOff', [])
 ToBuyController.$inject = ['ShoppingListCheckOffService', 'customCurrencyFilter', '$filter'];
 function ToBuyController(ShoppingListCheckOffService, customCurrencyFilter, $filter) {
   var buy = this;
-  buy.items = ShoppingListCheckOffService.getItems('toBuy');
+  buy.items = ShoppingListCheckOffService.getItems('toBuy')
   buy.quantity = 1;
 
   buy.moveItem = function(itemIndex) {
@@ -78,7 +78,7 @@ function ShoppingListCheckOffService() {
   };
 
   service.getItems = function (arrayToGet) {
-    if (arrayToGet === 'toBuy'){
+    if (arrayToGet === 'toBuy'){  
       return toBuyList;
     }
     else {
