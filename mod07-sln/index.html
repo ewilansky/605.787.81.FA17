@@ -31,7 +31,7 @@
     <div class="col-md-6 .offset-md-1" ng-controller='AlreadyBoughtController as bought'>
      <h2>Already Bought:</h2>
       <div class="shopping-list" ng-repeat="thing in bought.things">
-        {{ thing.quantity }} of {{ thing.name }} for total price of {{thing.total}}
+        {{ thing.quantity }} of {{ thing.name }} for total price of {{thing.totalPrice | currency : "$$" : 2}}
       </div>
      <div ng-if="bought.things.length ==0" class="emptyMessage">Nothing bought yet.</div>
     </div>

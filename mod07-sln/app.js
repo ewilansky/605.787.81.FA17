@@ -4,21 +4,22 @@
 angular.module('ShoppingListCheckOff', [])
 .controller('ToBuyController', ToBuyController)
 .controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+.filter('customCurrency', CurrencyFilterFactory);
 
-ToBuyController.$inject = ['ShoppingListCheckOffService'];
-function ToBuyController(ShoppingListCheckOffService) {
+ToBuyController.$inject = ['ShoppingListCheckOffService', '$filter'];
+function ToBuyController(ShoppingListCheckOffService, currencyFilter, $filter) {
   var buy = this;
   buy.items = ShoppingListCheckOffService.getItems('toBuy');
   buy.quantity = 1;
 
   buy.moveItem = function(itemIndex) {
-    ShoppingListCheckOffService.moveItem(itemIndex)
+    ShoppingListCheckOffService.moveItem(itemIndex);
   };
 }
 
-AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-function AlreadyBoughtController(ShoppingListCheckOffService) {
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$filter'];
+function AlreadyBoughtController(ShoppingListCheckOffService, $filter) {
   var bought = this;
   bought.things = ShoppingListCheckOffService.getItems('bought');
 }
@@ -63,10 +64,12 @@ function ShoppingListCheckOffService() {
   var boughtList = [];
 
   service.moveItem = function (itemIndex) {
-    // move item from tobuy array to bought array
-
-    // first remove and get the item from the tobuy array
-    var item = toBuyList.splice(itemIndex, 1);
+    // set total price for the selected item
+    var item = toBuyList[itemIndex];
+    item.totalPrice = item.quantity * item.pricePerItem;
+    
+    // remove and get the item from the tobuy array
+    item = toBuyList.splice(itemIndex, 1);
     // push the item onto the bought list
     boughtList.push(item[0]);
   };
@@ -78,6 +81,12 @@ function ShoppingListCheckOffService() {
     else {
       return boughtList;
     }
+  };
+}
+
+function CurrencyFilterFactory() {
+  return function (input) {
+    return '$' + input;
   };
 }
 
