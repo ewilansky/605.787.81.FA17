@@ -57,7 +57,7 @@ function ShoppingListCheckOffService() {
     {
       name: "Mangos",
       quantity: 1,
-      pricePerItems: 2.25
+      pricePerItem: 2.25
     }
   ];
   
