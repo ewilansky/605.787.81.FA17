@@ -1,96 +1,63 @@
 (function () {
 'use strict';
 
-angular.module('ShoppingListCheckOff', [])
-.controller('ToBuyController', ToBuyController)
-.controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService)
-.filter('customCurrency', CurrencyFilterFactory);
+angular.module('NarrowItDownApp', [])
+.controller('NarrowItDownController', NarrowItDownController)
+.service('MenuSearchService', MenuSearchService)
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
+.directive('foundItems', FoundItems);
 
-ToBuyController.$inject = ['ShoppingListCheckOffService', 'customCurrencyFilter', '$filter'];
-function ToBuyController(ShoppingListCheckOffService, customCurrencyFilter, $filter) {
-  var buy = this;
-  buy.items = ShoppingListCheckOffService.getItems('toBuy')
-  buy.quantity = 1;
+NarrowItDownController.$inject = ['MenuSearchService'];
+function NarrowItDownController(MenuSearchService) {
+  var narrowIt = this;
 
-  buy.moveItem = function(itemIndex) {
-    ShoppingListCheckOffService.moveItem(itemIndex, customCurrencyFilter, $filter);
+  narrowIt.getMenuItems = function () {
+    // setup a promise when calling the http service to return
+    // menu items
+    var promise = MenuSearchService.getMatchedMenuItems();
+
+    // resolve promise, expecting a response
+    promise.then(function (response) {
+      narrowIt.items = response.data.menu_items;
+    })
+    .catch(function (error) {
+      console.log("Menu items service unavailable.");
+    }); 
   };
+
+  foundItems.removeItem = function (itemIndex) {
+    console.log("'this' is: ", this);
+    // this.lastRemoved = "Last item removed was " + this.items[itemIndex].name;
+    item.removeItem(itemIndex);
+    // this.title = origTitle + " (" + list.items.length + " items )";
+  };
+
 }
 
-AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-function AlreadyBoughtController(ShoppingListCheckOffService) {
-  var bought = this;
-  bought.things = ShoppingListCheckOffService.getItems('bought');
+FoundItems.$inject = []
+function FoundItems() {
+  var ddo = {
+    restrict: 'E',
+    templateUrl: 'menuItem.html',
+    scope: {
+
+    }
+  };
+
+  return ddo;
 }
 
-function ShoppingListCheckOffService() {
+MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+function MenuSearchService($http, ApiBasePath) {
   var service = this;
 
-  var toBuyList = [
-    {
-      name: "Ginger Root per Lb",
-      quantity: 1,
-      pricePerItem: 7.25,
-      totalPrice: 7.25
-    },
-    {
-      name: "Avocados",
-      quantity: 1,
-      pricePerItem: 1.49
-    },
-    {
-      name: "Garlic Cloves",
-      quantity: 1, 
-      pricePerItem: 1.99
-    },
-    {
-      name: "Chocolate Bars",
-      quantity: 1,
-      pricePerItem: 4.50
-    },
-    {
-      name: "Papayas",
-      quantity: 1,
-      pricePerItem: 4.25
-    },
-    {
-      name: "Mangos",
-      quantity: 1,
-      pricePerItem: 2.25
-    }
-  ];
-  
-  var boughtList = [];
-
-  service.moveItem = function (itemIndex, customCurrencyFilter, $filter) {
-    // set total price for the selected item
-    var item = toBuyList[itemIndex];
-    // apply built-in currency filter
-    var curr = $filter('currency')(item.quantity * item.pricePerItem, '$', 2);
-    // apply our custom currency filter
-    item.totalPrice = customCurrencyFilter(curr);
+  service.getMatchedMenuItems = function (searchTerm) {
+    var response = $http({
+      method: "GET",
+      url: (ApiBasePath + "/menu_items.json"), 
+    });
     
-    // remove and get the item from the tobuy array
-    item = toBuyList.splice(itemIndex, 1);
-    // push the item onto the bought list
-    boughtList.push(item[0]);
-  };
-
-  service.getItems = function (arrayToGet) {
-    if (arrayToGet === 'toBuy'){  
-      return toBuyList;
-    }
-    else {
-      return boughtList;
-    }
-  };
-}
-
-// CurrencyFilterFactor.$inject = ['$filter']
-function CurrencyFilterFactory() {
-  return function (input) {
-    return '$$' + input;
+    return response;
   };
 }
 
