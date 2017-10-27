@@ -28,21 +28,10 @@ function NarrowItDownController(MenuSearchService) {
 
   // resolve promise, expecting a response
   promise.then(function (response) {
-    var found = [];
     var menuItems = response.data.menu_items;
     var search = narrowIt.searchText.toLowerCase();
-
-    // narrowIt.items = narroMenuSearchService.filterItems()
-    
-    for(var i=0; i < menuItems.length; i++) {
-      if (menuItems[i].description.toLowerCase().includes(search)) {
-        found.push(menuItems[i]);
-      }
-    }
-    
-    // narrowIt.items = response.data.menu_items;
-    narrowIt.items = found;  
-  })
+    narrowIt.items = MenuSearchService.filterItems(menuItems, search);
+    })
     .catch(function (error) {
       console.log("Menu items service unavailable.");
     }); 
@@ -51,9 +40,6 @@ function NarrowItDownController(MenuSearchService) {
   narrowIt.removeItem = function (itemIndex) {
     MenuSearchService.removeItem(itemIndex);
   };
-
- 
-
 }
 
 FoundItems.$inject = []
@@ -90,6 +76,7 @@ function FoundItemsDirectiveController() {
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
   function MenuSearchService($http, ApiBasePath) {
     var service = this;
+    var found = [];
 
     service.getMatchedMenuItems = function (searchText) {
       var response = $http({
@@ -100,8 +87,17 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
       return response;
     };
 
+    service.filterItems = function (menuItems, search) {
+      for (var i=0; i < menuItems.length; i++) {
+        if (menuItems[i].description.toLowerCase().includes(search)) {
+          found.push(menuItems[i]);
+        }
+      }
+      return found;
+    }
+
     service.removeItem = function (itemIndex) {
-      narrowIt.items.splice(itemIndex, 1);
+      found.splice(itemIndex, 1);
     };
   }
 
