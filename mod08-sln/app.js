@@ -13,10 +13,12 @@ function NarrowItDownController(MenuSearchService) {
   var narrowIt = this;
   // initialize searchText box to empty
   narrowIt.searchText = "";
-
-  narrowIt.notification = "";
+  narrowIt.notification = "Enter a search term";
 
   narrowIt.items = narrowIt.getMenuItems = function () {
+    // clear the notification from a previous request
+    narrowIt.notification = "";
+
     // setup a promise when calling the http service to return
     // menu items
     var promise = MenuSearchService.getMatchedMenuItems(narrowIt.searchText);
@@ -26,6 +28,11 @@ function NarrowItDownController(MenuSearchService) {
       var menuItems = response.data.menu_items;
       var search = narrowIt.searchText.toLowerCase();
       narrowIt.items = MenuSearchService.filterItems(menuItems, search);
+
+      if (narrowIt.items.length === 0) {
+        narrowIt.notification = "Nothing found";
+      }
+
       narrowIt.subTitle = MenuSearchService.setSubTitle(true, narrowIt.items);
     })
     .catch(function (error) {
@@ -39,7 +46,6 @@ function NarrowItDownController(MenuSearchService) {
   };
 }
 
-FoundItems.$inject = []
 function FoundItems() {
   var ddo = {
     restrict: 'EA',
@@ -51,11 +57,38 @@ function FoundItems() {
      },
     controller: 'FoundItemsDirectiveController as found',
     bindToController: true,
-    transclude: true
+    transclude: true,
+    link: FoundItemsDirectiveLink
   };
 
   return ddo;
 }
+
+function FoundItemsDirectiveLink(scope, element, attrs, controller, transclude) {
+  scope.$watch('found.foundItemsIsEmpty()', function (newValue, oldValue) {
+    // the notification is empty so don't show it
+    if (scope.$parent.narrowIt.notification === "") {
+      return;
+    }
+    else {
+      if (newValue === true) {
+        showNotification();
+      } else {
+        hideNotification();
+      }
+    }
+  });
+
+  function showNotification() {
+    var notificationElement = element.find("div.alert.alert-warning");
+    notificationElement.fadeIn("slow");
+  }
+
+  function hideNotification() {
+    var notificationElement = element.find("div.alert.alert-warning");
+    notificationElement.fadeOut("fast");
+  }
+};
 
 // controller in the ddo
 function FoundItemsDirectiveController() {
@@ -64,7 +97,6 @@ function FoundItemsDirectiveController() {
   // if the user did not enter a search term or there are no matches
   // then display Nothing found.
   list.foundItemsIsEmpty = function() {
-
     if (list.items.length == 0) {
        return true;
     }
@@ -91,20 +123,15 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
       // clear-out items from any prior requests
       found = [];
       
-      // no point in going any further if the user didn't enter anything
+      //no point in going any further if the user didn't enter anything
       if (search === "") {
-        narrowIt.notification = "Nothing found";
-        return;
+        return found;
       }
 
       for (var i = 0; i < menuItems.length; i++) {
         if (menuItems[i].description.toLowerCase().includes(search)) {
           found.push(menuItems[i]);
         }
-      }
-
-      if (found.length == 0) {
-        narrowIt.notification = "Nothing found";
       }
 
       return found;

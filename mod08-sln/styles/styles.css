@@ -40,8 +40,9 @@ div.listing {
   margin-top: 5px;
 }
 
-div.error {
-  font: #460303;
+div.alert.alert-warning.col-sm-2 {
+  background-color: white;
+  border: none;
 }
 
 @-webkit-keyframes load8 {
