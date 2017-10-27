@@ -30,6 +30,20 @@ input[type="text"] {
   width: 3em;
   height: 3em;
 }
+
+.btn-group-sm > .btn, .btn-sm {
+  margin-bottom: 5px;
+}
+
+div.listing {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+div.error {
+  font: #460303;
+}
+
 @-webkit-keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);

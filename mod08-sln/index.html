@@ -13,23 +13,21 @@
     <h2>Narrow Down Your Chinese Menu Choice</h2>
 
     <div class="form-group row">
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <input type="text" placeholder="search term" class="form-control" 
           ng-model="narrowIt.searchText">
       </div>
-      <div class="narrow-button col-sm-4">
+      <div class="narrow-button col-sm-2">
         <button class="btn btn-primary" 
           ng-click="narrowIt.getMenuItems();">Narrow It Down For Me!
         </button>
       </div>
     </div>
-    <div class="form-group row">
-        <!-- found-items should be implemented as a component -->
-        <!-- <found-items found-items="...." on-remove="...."></found-items> -->
-        <found-items my-list=narrowIt></found-items>
-  </div>
-
-
+    <div class="form-group row col-sm-12">
+        <found-items items="narrowIt.items" sub-title = "{{ narrowIt.subTitle }}" on-remove = "narrowIt.removeItem(index)">
+          <div>{{ narrowIt.notification }}</div>
+        </found-items>
+    </div>
   </div>
 
 </body>

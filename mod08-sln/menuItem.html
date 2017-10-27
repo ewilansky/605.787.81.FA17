@@ -1,10 +1,10 @@
-<ul>
-    <li ng-repeat="item in list.items">
-        {{ item.name }}, {{ item.short_name }}, {{ item.description }}
-        <button type="button" 
-        class="btn btn-primary btn-sm" 
-        ng-click="list.removeItem($index);">Don't want this one!</button>
-    </li>
-</ul>
+<h4 class = "col-sm-12">{{ found.subTitle }}</h4>
 
-<div class="error" ng-if="list.isEmpty();">Nothing found.</div>
+<div ng-repeat="item in found.items" class ="col-sm-12 listing">   
+    <button type="button" class="btn btn-primary btn-sm col-sm-2" 
+        ng-click="found.onRemove({index: $index});">Don't want this one!</button>
+    <div class="col-sm-10">
+        {{ item.name }}, {{ item.short_name }}, {{ item.description }}
+    </div>
+</div>
+<div ng-transclude></div>

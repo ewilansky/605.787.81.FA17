@@ -11,26 +11,22 @@ angular.module('NarrowItDownApp', [])
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrowIt = this;
-
   // initialize searchText box to empty
   narrowIt.searchText = "";
 
-  narrowIt.getMenuItems = function () {
+  narrowIt.notification = "";
 
-  // you're here because the user clicked the button. If the searchText
-  // is empty, return a message in the DDO that is "Nothing found"
-  // if (narrowIt.seachText.isEmpty()) {
+  narrowIt.items = narrowIt.getMenuItems = function () {
+    // setup a promise when calling the http service to return
+    // menu items
+    var promise = MenuSearchService.getMatchedMenuItems(narrowIt.searchText);
 
-
-  // setup a promise when calling the http service to return
-  // menu items
-  var promise = MenuSearchService.getMatchedMenuItems(narrowIt.searchText);
-
-  // resolve promise, expecting a response
-  promise.then(function (response) {
-    var menuItems = response.data.menu_items;
-    var search = narrowIt.searchText.toLowerCase();
-    narrowIt.items = MenuSearchService.filterItems(menuItems, search);
+    // resolve promise, expecting a response
+    promise.then(function (response) {
+      var menuItems = response.data.menu_items;
+      var search = narrowIt.searchText.toLowerCase();
+      narrowIt.items = MenuSearchService.filterItems(menuItems, search);
+      narrowIt.subTitle = MenuSearchService.setSubTitle(true, narrowIt.items);
     })
     .catch(function (error) {
       console.log("Menu items service unavailable.");
@@ -39,6 +35,7 @@ function NarrowItDownController(MenuSearchService) {
 
   narrowIt.removeItem = function (itemIndex) {
     MenuSearchService.removeItem(itemIndex);
+    narrowIt.subTitle = MenuSearchService.setSubTitle(false, narrowIt.items);
   };
 }
 
@@ -48,10 +45,13 @@ function FoundItems() {
     restrict: 'EA',
     templateUrl: 'menuItem.html',
      scope: {
-       list: '=myList'
+       items: '<',
+       subTitle: '@subTitle',
+       onRemove: '&'
      },
-    // controller: 'FoundItemsDirectiveController as list',
-    // bindToController: true
+    controller: 'FoundItemsDirectiveController as found',
+    bindToController: true,
+    transclude: true
   };
 
   return ddo;
@@ -63,11 +63,11 @@ function FoundItemsDirectiveController() {
 
   // if the user did not enter a search term or there are no matches
   // then display Nothing found.
-  list.isEmpty = function() {
-    // TODO: add condition where search text box is empty...
-    // if (list.items.length = 0) {
-    //   return true;
-    // }
+  list.foundItemsIsEmpty = function() {
+
+    if (list.items.length == 0) {
+       return true;
+    }
 
     return false;
   };
@@ -88,18 +88,42 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
     };
 
     service.filterItems = function (menuItems, search) {
-      for (var i=0; i < menuItems.length; i++) {
+      // clear-out items from any prior requests
+      found = [];
+      
+      // no point in going any further if the user didn't enter anything
+      if (search === "") {
+        narrowIt.notification = "Nothing found";
+        return;
+      }
+
+      for (var i = 0; i < menuItems.length; i++) {
         if (menuItems[i].description.toLowerCase().includes(search)) {
           found.push(menuItems[i]);
         }
       }
+
+      if (found.length == 0) {
+        narrowIt.notification = "Nothing found";
+      }
+
       return found;
     }
 
     service.removeItem = function (itemIndex) {
       found.splice(itemIndex, 1);
     };
-  }
 
+    service.setSubTitle = function (initialList, items) {
+      var itemNum = items.length;
+      if (itemNum !== 0) {
+        var word = itemNum === 1 ? "item" : "items";
+        var endWord = initialList ? " found" : " now listed";
+        return itemNum + " menu " + word + endWord;
+      }
+
+    };
+
+  }
 
 })();
