@@ -13,7 +13,7 @@ function NarrowItDownController(MenuSearchService) {
   var narrowIt = this;
   // initialize searchText box to empty
   narrowIt.searchText = "";
-  narrowIt.notification = "Enter a search term";
+  narrowIt.notification = "";
 
   narrowIt.items = narrowIt.getMenuItems = function () {
     // clear the notification from a previous request
