@@ -3,6 +3,7 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
+.controller('FoundItemsDirectiveController', FoundItemsDirectiveController)
 .service('MenuSearchService', MenuSearchService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
 .directive('foundItems', FoundItems);
@@ -11,54 +12,98 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrowIt = this;
 
-  narrowIt.getMenuItems = function () {
-    // setup a promise when calling the http service to return
-    // menu items
-    var promise = MenuSearchService.getMatchedMenuItems();
+  // initialize searchText box to empty
+  narrowIt.searchText = "";
 
-    // resolve promise, expecting a response
-    promise.then(function (response) {
-      narrowIt.items = response.data.menu_items;
-    })
+  narrowIt.getMenuItems = function () {
+
+  // you're here because the user clicked the button. If the searchText
+  // is empty, return a message in the DDO that is "Nothing found"
+  // if (narrowIt.seachText.isEmpty()) {
+
+
+  // setup a promise when calling the http service to return
+  // menu items
+  var promise = MenuSearchService.getMatchedMenuItems(narrowIt.searchText);
+
+  // resolve promise, expecting a response
+  promise.then(function (response) {
+    var found = [];
+    var menuItems = response.data.menu_items;
+    var search = narrowIt.searchText.toLowerCase();
+
+    // narrowIt.items = narroMenuSearchService.filterItems()
+    
+    for(var i=0; i < menuItems.length; i++) {
+      if (menuItems[i].description.toLowerCase().includes(search)) {
+        found.push(menuItems[i]);
+      }
+    }
+    
+    // narrowIt.items = response.data.menu_items;
+    narrowIt.items = found;  
+  })
     .catch(function (error) {
       console.log("Menu items service unavailable.");
     }); 
   };
 
-  foundItems.removeItem = function (itemIndex) {
-    console.log("'this' is: ", this);
-    // this.lastRemoved = "Last item removed was " + this.items[itemIndex].name;
-    item.removeItem(itemIndex);
-    // this.title = origTitle + " (" + list.items.length + " items )";
+  narrowIt.removeItem = function (itemIndex) {
+    MenuSearchService.removeItem(itemIndex);
   };
+
+ 
 
 }
 
 FoundItems.$inject = []
 function FoundItems() {
   var ddo = {
-    restrict: 'E',
+    restrict: 'EA',
     templateUrl: 'menuItem.html',
-    scope: {
-
-    }
+     scope: {
+       list: '=myList'
+     },
+    // controller: 'FoundItemsDirectiveController as list',
+    // bindToController: true
   };
 
   return ddo;
 }
 
-MenuSearchService.$inject = ['$http', 'ApiBasePath'];
-function MenuSearchService($http, ApiBasePath) {
-  var service = this;
+// controller in the ddo
+function FoundItemsDirectiveController() {
+  var list = this;
 
-  service.getMatchedMenuItems = function (searchTerm) {
-    var response = $http({
-      method: "GET",
-      url: (ApiBasePath + "/menu_items.json"), 
-    });
-    
-    return response;
+  // if the user did not enter a search term or there are no matches
+  // then display Nothing found.
+  list.isEmpty = function() {
+    // TODO: add condition where search text box is empty...
+    // if (list.items.length = 0) {
+    //   return true;
+    // }
+
+    return false;
   };
 }
+
+MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+  function MenuSearchService($http, ApiBasePath) {
+    var service = this;
+
+    service.getMatchedMenuItems = function (searchText) {
+      var response = $http({
+        method: "GET",
+        url: (ApiBasePath + "/menu_items.json"), 
+      });
+      
+      return response;
+    };
+
+    service.removeItem = function (itemIndex) {
+      narrowIt.items.splice(itemIndex, 1);
+    };
+  }
+
 
 })();
