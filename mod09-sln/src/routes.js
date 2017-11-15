@@ -7,22 +7,22 @@ angular.module('MenuApp')
 RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 function RoutesConfig($stateProvider, $urlRouterProvider) {
 
-  // Redirect to home page if no other URL matches
+  // Redirect to home view if no other URL matches
   $urlRouterProvider.otherwise('/');
 
   // *** Set up UI states ***
   $stateProvider
 
-  // Home page
+  // Home view
   .state('home', {
     url: '/',
     templateUrl: 'src/menuapp/templates/home.html'
   })
 
-  // Premade list page
+  // Menu catgories view
   .state('menuList', {
-    url: '/menu-list',
-    templateUrl: 'src/menuapp/templates/main-menuapp.template.html',
+    url: '/categories',
+    templateUrl: 'src/menuapp/templates/menu-categories.html',
     controller: 'MainMenuAppController as mainMenu'
   });
 }
