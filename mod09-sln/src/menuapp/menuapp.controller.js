@@ -9,13 +9,31 @@ angular.module('MenuApp')
 MainMenuAppController.$inject = ['MenuDataService'];
 function MainMenuAppController(MenuDataService) {
   var mainMenu = this;
-  mainMenu.items = [];
+  //TODO: change this to mainMenu.categories and then make
+  // another mainMenu array for categoryItems to be used
+  // by the items component
+  mainMenu.categories = [];
+  mainMenu.categoryItems = [];
 
   mainMenu.$onInit = function () {
-    MenuDataService.getCategories()
+    MenuDataService.getAllCategories()
     .then(function (result) {
-      mainMenu.items = result.data;
+      mainMenu.categories = result.data;
+    })
+    .catch(function (error) {
+      console.log("Unable to retrieve menu categories");
     });
+
+   mainMenu.getItemsForCategory = function (categoryShortName) {
+    MenuDataService.getItemsForCategory(categoryShortName)
+      .then(function(result){
+        // console.log(result.data);
+        mainMenu.categoryItems = result.data;
+      })
+      .catch(function(error){
+        console.log("Unable to retrieve menu items for category");
+      });
+    }
   };
 }
 

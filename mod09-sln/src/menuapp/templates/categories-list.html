@@ -1,0 +1,8 @@
+<ul>
+  <li ng-repeat="category in $ctrl.items">
+    <a href="" 
+      ng-click="mainMenu.getItemsForCategory(category.short_name);">
+      {{ category.name }}</a>
+  </li>
+</ul>
+
