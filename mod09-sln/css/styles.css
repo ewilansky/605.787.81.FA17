@@ -17,3 +17,18 @@ body {
 .active {
   font-weight: bold;
 }
+
+li[ui-sref]:hover {
+  display: inline-block;
+  cursor: pointer;
+  color: #008000;
+  text-decoration: underline;
+}
+
+#item-name {
+  font-weight: bold;
+}
+
+#description {
+  text-transform: capitalize;
+}

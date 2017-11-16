@@ -18,12 +18,12 @@ MenuDataService.$inject = ['$http', 'ApiBasePath']
     return response;
   };
 
-  service.getItemsForCategory = function(shortName){
+  service.getItemsForCategory = function(short_name){
     var response = $http({
       method: "GET",
       url: (ApiBasePath + "/menu_items.json"),
       params: {
-        category: shortName
+        category: short_name
       }
     });
 
