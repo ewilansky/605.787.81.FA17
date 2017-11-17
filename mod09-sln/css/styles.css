@@ -1,5 +1,6 @@
 body {
   font-size: 1.2em;
+  font-family: "Arial", Verdana, sans-serif;
 }
 
 .error {
@@ -18,11 +19,30 @@ body {
   font-weight: bold;
 }
 
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li[ui-sref] {
+  list-style: none;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
 li[ui-sref]:hover {
   display: inline-block;
   cursor: pointer;
   color: #008000;
-  text-decoration: underline;
+}
+
+li[ui-sref]:before {
+  content: "+";
+}
+
+#category-item {
+  width: 250px;
 }
 
 #item-name {
@@ -31,4 +51,5 @@ li[ui-sref]:hover {
 
 #description {
   text-transform: capitalize;
+  margin-bottom: 2px;
 }
