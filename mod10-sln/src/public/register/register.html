@@ -55,8 +55,8 @@
 
             <div class="form-group col-md-6">
                 <label class="col-form-label">Phone Number</label>
-                <input class="form-control" type="phone" name="phone" placeholder="Phone ###-###-#### (optional)" ng-model="regCtrl.user.phone"
-                    pattern="(\d{3})-(\d{3})-(\d{4})">
+                <input class="form-control" type="telephone" name="phone" placeholder="Phone ###-###-#### (optional)" ng-model="regCtrl.user.phone">
+                    <!-- pattern="(\d{3})-(\d{3})-(\d{4})"> -->
             </div>
         </div>
 
@@ -75,9 +75,16 @@
         </div>
 
         <div class="form-row align-items-center">
-            <div class="col-md-11">&nbsp;</div>
-             <div class="col-md-1">
-                <button class="btn btn-success" ng-disabled="regForm.$invalid" ng-click="regCtrl.saveRegistration(user)">Save
+            <!-- TODO: add custom validation to check the value entered against the actual list in menu_items.json - implement in user-profile-service
+            and call from registration controller regCtrl.verifyDishCode(codeEntered) -->
+            <div class="form-group col-md-4">
+                <label class="col-form-label">Favorite dish (2 or 3 letter code)</label>
+                <input class="form-control" type="text" name="dish" placeholder="Enter dish code" ng-model="regCtrl.user.dishCode"
+                    required minlength="2" maxlength="3">
+            </div>
+             <div class="col-md-7">&nbsp;</div>
+             <div class="col-sm-1">
+                <button class="btn btn-success" id="button-reg-submit" ng-disabled="regForm.$invalid" ng-click="regCtrl.getRegistrationData(user)">Save
                 </button>
             </div>
         </div>

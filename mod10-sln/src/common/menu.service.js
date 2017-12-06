@@ -15,7 +15,6 @@ function MenuService($http, ApiPath) {
     });
   };
 
-
   service.getMenuItems = function (category) {
     var config = {};
     if (category) {
@@ -25,6 +24,16 @@ function MenuService($http, ApiPath) {
     return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
       return response.data;
     });
+  };
+
+  // TODO: get the shortname from the registration form and send it over here from the userprofile service
+  // validate the short name and return true of false to the userprofile service validateDishCode method
+  service.isValidShortName = function(shortName) {
+    if (shortName) {
+      console.log('short name in menu service is:' + shortName);
+    }
+
+    return false;
   };
 
 }

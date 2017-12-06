@@ -80,6 +80,10 @@
   border: 2px red solid;
 }
 
+#button-reg-submit {
+  margin-top: 30px;
+}
+
 /* END REGISTRATION PAGE */
 
 /* SINGLE CATEGORY PAGE */

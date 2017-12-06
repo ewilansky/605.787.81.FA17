@@ -47,16 +47,17 @@ function routeConfig ($stateProvider) {
         firstName: null,
         lastName: null,
         email: null,
-        phone: null
+        phone: null,
+        dishCode: null
       },
       templateUrl: 'src/public/register/register.html',
       controller: 'RegistrationController',
       controllerAs: 'regCtrl',
-      resolve: {
-        userData: ['$stateParams', function($stateParams) {
-          console.log($stateParams.table);
-        }]
-      }
+      // resolve: {
+      //   userData: ['UserProfileService', function(UserProfileService) {
+      //     return UserProfileService.getUser();
+      //   }]
+      // }
     });
 }
 })();
