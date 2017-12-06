@@ -81,7 +81,15 @@
 }
 
 #button-reg-submit {
-  margin-top: 30px;
+  margin-top: 15px;
+}
+
+#short-name {
+  text-transform: uppercase;
+}
+
+#code-label {
+  padding-top: 10px;
 }
 
 /* END REGISTRATION PAGE */

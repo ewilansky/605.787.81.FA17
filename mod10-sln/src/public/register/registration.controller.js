@@ -10,11 +10,15 @@
 
         var regCtrl = this;
 
-        regCtrl.getRegistrationData = function () {
+        // hand-off registration data to the UserProfileService to save and validate the dishCode
+        regCtrl.saveRegistrationData = function () {
             var reg = this;
-            var isValidDishCode = UserProfileService.validateDishCode(reg.user.dishCode);
-            UserProfileService.getUser(reg.user);
+            var user = UserProfileService.saveProfile(reg.user);
+        };
+
+        regCtrl.getRegistrationData = function () {
+            // UserProfileService.getUser(reg.user);
+            return UserProfileService.getUser();
         };
     }
-
 })();

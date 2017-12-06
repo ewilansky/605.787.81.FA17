@@ -16,16 +16,30 @@
         var service = this;
         var user = {};
 
-        service.getUser = function (user) {
+        service.getUser = function () {
             console.log('in user profile service. user name is:' +  user.firstName + ' ' + user.lastName);
-            user = user;
             return user;
         };
 
-        // if this returns true then set the value for the user, otherwise, chuck it
-        service.validateDishCode = function (dishCode) {
-            console.log('favorite dish is: ' + dishCode);
-            return MenuService.isValidShortName(dishCode);
+        // if this returns a value then set the value for the user, otherwise, chuck it
+        service.saveProfile = function (user) {
+            var dishCodeUpper = user.dishCode.toUpperCase();
+            console.log('in user profile service, favorite dish is: ' + dishCodeUpper);
+            
+            var menuItem = MenuService.tryGetMenuItem(dishCodeUpper);
+            menuItem.then(function(item) {
+                // if the item can't be found, remove the invalid dish code entered by the user
+                if (!item) {
+                    user.dishCode = "";
+                    user.dishCodeResponse = "No such menu number exists.";
+                } else {
+                    user.dishCode = dishCodeUpper;
+                    user.dishCodeResponse = dishCodeUpper + " is valid";
+                    user.dishCodeValid = true;
+                }
+
+                return user;    
+            });
         };
     }
 
