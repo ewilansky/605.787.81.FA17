@@ -15,10 +15,5 @@
             var reg = this;
             var user = UserProfileService.saveProfile(reg.user);
         };
-
-        regCtrl.getRegistrationData = function () {
-            // UserProfileService.getUser(reg.user);
-            return UserProfileService.getUser();
-        };
     }
 })();

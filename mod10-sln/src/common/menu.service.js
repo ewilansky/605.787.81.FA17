@@ -26,10 +26,6 @@ function MenuService($http, ApiPath) {
     });
   };
 
-  // TODO: get the shortname from the registration form and send it over here from the userprofile service
-  // validate the short name and return true of false to the userprofile service validateDishCode method
-  // just construct the shortname, like so, given the input value
-  // first check that the value is either 2 or 3 characters, then try the endpoint...
   // https://ewilansky-course5.herokuapp.com/menu_items/{shortName}.json. If it returns status 500, then it's not real
   // for image, check if image_present is true and then make this call:
   // how to get the image: https://ewilansky-course5.herokuapp.com/images/{shortName}.jpg
@@ -43,7 +39,7 @@ function MenuService($http, ApiPath) {
           console.log('response from menu service:' + response.data);
           return response.data;
       }).catch(function (response) {
-          // console.log("failure response status is:" + response.status);
+          console.log("failure response status is:" + response.status);
           return false;
       });
     } 

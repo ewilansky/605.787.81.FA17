@@ -52,12 +52,18 @@ function routeConfig ($stateProvider) {
       },
       templateUrl: 'src/public/register/register.html',
       controller: 'RegistrationController',
-      controllerAs: 'regCtrl',
-      // resolve: {
-      //   userData: ['UserProfileService', function(UserProfileService) {
-      //     return UserProfileService.getUser();
-      //   }]
-      // }
+      controllerAs: 'regCtrl'
+    })
+    .state('public.info', {
+      url:'/info/',
+      templateUrl: 'src/public/info/user-profile.html',
+      controller: 'UserProfileController',
+      controllerAs: 'profCtrl',
+      resolve: {
+        userProfile: ['UserProfileService', function (UserProfileService) {
+          return UserProfileService.getUserProfile();
+        }]
+      }
     });
 }
 })();

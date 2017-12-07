@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/restaurant.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
   </head>
   <body ng-app="restaurant" ng-strict-di>
 
@@ -51,7 +52,7 @@
                   <span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Menu</a>
               </li>
               <li>
-                <a href="#">
+                <a ui-sref="public.info">
                   <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> My Info</a>
               </li>
               <li>
@@ -136,6 +137,7 @@
     <script src="src/public/menu-item/menu-item.component.js"></script>
     
     <script src="src/public/register/registration.controller.js"></script>
+    <script src="src/public/info/user-profile.controller.js"></script>
 
     <!-- ADMIN SITE -->
 
