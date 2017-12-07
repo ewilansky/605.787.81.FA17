@@ -1,21 +1,31 @@
 <div class="container">
     <h2 class="text-center">User Profile Information</h2>
-    <div>{{profCtrl.user.firstName}}</div>
-</div>
 
-<div class="menu-item-tile col-md-6">
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="menu-item-photo">
-                <div>{{profCtrl.menuItem.short_name}}</div>
-                <img class="img-responsive" width="250" height="150" ng-src="{{$profCtrl.basePath}}/images/{{$profCtrl.menuItem.short_name}}.jpg"
-                    alt="{{$profCtrl.menuItem.name}}">
+    <div class="row" ng-if="profCtrl.message">
+        <h3 class="text-center">{{profCtrl.message}}</h3>
+    </div>
+
+    <div class="row text-center" ng-if="profCtrl.user">
+        <div class="col-sm-6 card">
+            <div class="card-body">
+                <h3 class="card-title">User Info</h3>
+                <div class="card-subtitle">Full Name: {{profCtrl.user.firstName}} {{profCtrl.user.lastName}}</div>
+                <div class="card-subtitle">Email: {{profCtrl.user.email}}</div>
+                <div class="card-text" ng-if="profCtrl.user.phone">Phone: {{profCtrl.user.phone}}</div>
             </div>
         </div>
-        <div class="menu-item-description col-sm-7">
-            <h3 class="menu-item-title">{{$profCtrl.menuItem.name}}</h3>
-            <p class="menu-item-details">{{$profCtrl.menuItem.description}}</p>
+        <div class="col-sm-6">
+            <h3>Favorite Dish</h3>
+            <div>{{profCtrl.menuItem.name}} ({{profCtrl.menuItem.short_name}}</div>
+            <!-- for image, check if image_present is true then show the image: -->
+            <!-- how to get the image: https://ewilansky-course5.herokuapp.com/images/{shortName}.jpg -->
+            <img width="250" height="150" 
+                ng-src="{{profCtrl.basePath}}/images/{{profCtrl.menuItem.short_name}}.jpg"
+                alt="{{profCtrl.menuItem.name}}">
+            <div class="menu-item-description">
+                    <h4 class="menu-item-title">{{profCtrl.menuItem.name}}</h4>
+                    <p class="menu-item-details">{{profCtrl.menuItem.description}}</p>
+            </div>
         </div>
     </div>
-    <hr class="visible-xs">
 </div>

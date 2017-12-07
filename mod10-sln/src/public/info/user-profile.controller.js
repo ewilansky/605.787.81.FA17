@@ -4,15 +4,16 @@
     angular.module('public')
         .controller('UserProfileController', UserProfileController);
 
-    UserProfileController.$inject = ['userProfile'];
-    function UserProfileController(userProfile) {        
+    UserProfileController.$inject = ['userProfile', 'ApiPath'];
+    function UserProfileController(userProfile, ApiPath) {        
         var profCtrl = this;
 
-        // var userProfile = UserProfileService.getUserProfile();
-        
-        profCtrl.user = userProfile[0];
-        profCtrl.menuItem = userProfile[1];
-         
-        console.log(profCtrl.menuItem);
+        if (userProfile.message) {
+            profCtrl.message = userProfile.message;
+        } else {
+            profCtrl.user = userProfile[0];
+            profCtrl.menuItem = userProfile[1];
+            profCtrl.basePath = ApiPath;
+        }
     }
 })();

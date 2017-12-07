@@ -1,7 +1,6 @@
 (function () {
     "use strict";
     
-    // retrieve the module
     angular.module('public')
         .controller('RegistrationController', RegistrationController);
 
@@ -15,5 +14,15 @@
             var reg = this;
             var user = UserProfileService.saveProfile(reg.user);
         };
+
+        regCtrl.checkValidity = function() {
+            var reg = this;
+            var dishCode = reg.user.dishCode.toUpperCase();             
+            
+            return UserProfileService.validateCode(dishCode).then(function(user){
+                reg.user.dishCodeResponse = user.dishCodeResponse;
+            });                    
+        };
     }
+    
 })();

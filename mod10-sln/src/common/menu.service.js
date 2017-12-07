@@ -26,9 +26,9 @@ function MenuService($http, ApiPath) {
     });
   };
 
-  // https://ewilansky-course5.herokuapp.com/menu_items/{shortName}.json. If it returns status 500, then it's not real
-  // for image, check if image_present is true and then make this call:
-  // how to get the image: https://ewilansky-course5.herokuapp.com/images/{shortName}.jpg
+  // https://ewilansky-course5.herokuapp.com/menu_items/{shortName}.json. If it returns status 500, then it doesn't exist
+  // ideally, the server shouldn't return 500 for a non-existent record, but we are to focus on the client so an 
+  // error will appear in DevTools
   service.tryGetMenuItem = function(shortName) {
     // var config = {};
     // config.cache = true;
