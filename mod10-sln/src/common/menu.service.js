@@ -30,22 +30,16 @@ function MenuService($http, ApiPath) {
   // ideally, the server shouldn't return 500 for a non-existent record, but we are to focus on the client so an 
   // error will appear in DevTools
   service.tryGetMenuItem = function(shortName) {
-    // var config = {};
-    // config.cache = true;
+    var config = {};
+    config.cache = true;
     if (shortName.length >= 2 && shortName.length <= 3) {
-      console.log('short name in menu service is:' + shortName);
-      
-      return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function (response) {
-          console.log('response from menu service:' + response.data);
+      return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function (response) {          
           return response.data;
       }).catch(function (response) {
-          console.log("failure response status is:" + response.status);
           return false;
       });
     } 
   };
 }
-
-
 
 })();

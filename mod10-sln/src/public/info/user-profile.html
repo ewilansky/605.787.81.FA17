@@ -6,7 +6,7 @@
     </div>
 
     <div class="row text-center" ng-if="profCtrl.user">
-        <div class="col-sm-6 card">
+        <div class="col-sm-4 card">
             <div class="card-body">
                 <h3 class="card-title">User Info</h3>
                 <div class="card-subtitle">Full Name: {{profCtrl.user.firstName}} {{profCtrl.user.lastName}}</div>
@@ -14,16 +14,15 @@
                 <div class="card-text" ng-if="profCtrl.user.phone">Phone: {{profCtrl.user.phone}}</div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h3>Favorite Dish</h3>
-            <div>{{profCtrl.menuItem.name}} ({{profCtrl.menuItem.short_name}}</div>
+            <div>{{profCtrl.menuItem.name}} ({{profCtrl.menuItem.short_name}})</div>
             <!-- for image, check if image_present is true then show the image: -->
             <!-- how to get the image: https://ewilansky-course5.herokuapp.com/images/{shortName}.jpg -->
             <img width="250" height="150" 
                 ng-src="{{profCtrl.basePath}}/images/{{profCtrl.menuItem.short_name}}.jpg"
                 alt="{{profCtrl.menuItem.name}}">
             <div class="menu-item-description">
-                    <h4 class="menu-item-title">{{profCtrl.menuItem.name}}</h4>
                     <p class="menu-item-details">{{profCtrl.menuItem.description}}</p>
             </div>
         </div>
